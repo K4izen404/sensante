@@ -40,9 +40,15 @@ for region, count in region_counts.items() :
 
 # ===== TEMPERATURE MOYENNE PAR DIAGNOSTIC =====
 print(f"\n--- Temperature moyenne par diagnostic ---")
-temp_by_diag = df.groupby ("diagnostic")["temperature"].mean()
-for diag , temp in temp_by_diag . items () :
-    print(f"  { diag :12s} : { temp :.1f} C")
+temp_by_diag = df.groupby("diagnostic")["temperature"].mean()
+for diag , temp in temp_by_diag.items() :
+    print(f"  { diag:12s} : { temp:.1f} C")
+
+# ===== REPARTITION PAR SEXE ET DIAGNOSTIC =====
+print("f\n--- Nombre de patients par sexe ---")
+sexe_diag_counts = df.groupby(["sexe", "diagnostic"]).size()
+for (sexe, diag), count in sexe_diag_counts.items() :
+    print(f"{sexe:2s} | {diag:12s} : {count:3d} patients")
 
 print(f"\n{ '= ' * 50}")
 print("Exploration terminee !")
